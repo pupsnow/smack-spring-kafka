@@ -1,0 +1,16 @@
+*.iws
+stacktrace.log
+/plugin.xml
+*.log
+.DS_Store
+target/
+test-output/
+out/
+*.iml
+*.lnk
+# STS
+.idea
+.classpath
+.project
+/.ignore
+/.gitignore
