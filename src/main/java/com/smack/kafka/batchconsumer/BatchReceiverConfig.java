@@ -5,6 +5,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
@@ -15,8 +16,8 @@ import java.util.Map;
 @Configuration
 public class BatchReceiverConfig {
 
-    public static final int NUMBER_OF_MESSAGES = 20;
-    public static final int NUMBER_OF_RECORDS_IN_SINGLE_BATCH = 10;
+    public static final int NUMBER_OF_MESSAGES = 10;
+    public static final int NUMBER_OF_RECORDS_IN_SINGLE_BATCH = 5;
 
     private static final String CONSUMER_GROUP_ID = "batch";
 
@@ -31,6 +32,7 @@ public class BatchReceiverConfig {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, CONSUMER_GROUP_ID);
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         // max number of records in a single batch poll
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, NUMBER_OF_RECORDS_IN_SINGLE_BATCH);
 

@@ -29,8 +29,18 @@ public class Sender {
 
       @Override
       public void onSuccess(SendResult<String, Message> result) {
-        LOGGER.info("sent message='{}' with offset={}", msg,
-                result.getRecordMetadata().offset());
+        LOGGER.info("ProducerRecord | sent message='{}' | partition = {} | key = {} | timestamp = {}",
+                msg,
+                result.getProducerRecord().partition(),
+                result.getProducerRecord().key(),
+                result.getProducerRecord().timestamp());
+
+        LOGGER.info("RecordMetadata | sent message='{}' | partition = {} | offset = {} | timestamp = {} | topic = {}",
+                msg,
+                result.getRecordMetadata().partition(),
+                result.getRecordMetadata().offset(),
+                result.getRecordMetadata().timestamp(),
+                result.getRecordMetadata().topic());
       }
 
       @Override
