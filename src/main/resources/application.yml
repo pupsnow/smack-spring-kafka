@@ -9,3 +9,5 @@ topic:
   json: json.t
   string: string.t
   batch: batch.t
+  bar: bar.t
+  foo: foo.t
